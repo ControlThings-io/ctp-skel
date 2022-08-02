@@ -1,0 +1,10 @@
+	done
+fi
+
+unset rc
+
+##### Justin Customizations
+#macchina -t ControlThings
+echo "Welcome to Bash!"
+eval "$(starship init bash)"
+

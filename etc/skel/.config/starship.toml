@@ -1,0 +1,290 @@
+###########################
+#  Command Prompt Format  #
+###########################
+
+add_newline = true
+
+format = """
+[╭─](fg:240)[](fg:236)\
+$shell\
+$container\
+$docker_context\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$package\
+$cmake\
+$cobol\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+[](fg:236)$fill\
+[](fg:236)[ ](bg:236)\
+$status\
+$cmd_duration\
+$jobs\
+$battery\
+$memory_usage\
+$time\
+[ ](bg:236)[](fg:236)[─╮](fg:240)
+[╰─](fg:240)$sudo$character"""
+
+right_format = "[─╯](fg:240)"
+
+
+
+################################
+#  Always-Shown Basic Modules  #
+################################
+
+# This one seems broken, at least on fish
+[shell]
+format = "[ ](dimmed bg:236)[$indicator]($style)[ ](bg:236)"
+style = "bold bg:236"
+fish_indicator = ""
+bash_indicator = "bash"
+disabled = false
+
+[container]
+format = "[ ](dimmed bg:236)[$symbol $name ]($style)"
+style = "bold red bg:236"
+symbol = "⬢"
+
+[docker_context]
+format = "[ ](dimmed bg:236)[$symbol $context ]($style)"
+style = "blue bold bg:236"
+symbol = " "
+
+[username]
+format = "[$user]($style) in "
+show_always = false
+
+[hostname]
+format = "[$hostname]($style) in "	
+#ssh_only = true
+
+# [localip]
+# format = "[$localipv4]($style) "
+# ssh_only = true
+# disabled = true
+
+[directory]
+format = "[ ](dimmed bg:236)[ ](bg:236)[$path]($style)[$read_only]($read_only_style)[ ](bg:236)"
+style = "bold 31 bg:236"
+truncation_length = 8
+truncate_to_repo = false
+truncation_symbol = ".../"
+read_only = " "
+read_only_style = "red bg:236"
+
+### Version Control and Packages - Configure in Later Section
+
+### Programming Language Modules - Configure in Later Section
+
+[fill]
+symbol = "─"
+style = "fg:240"
+
+### OS and Process Status Modules - Configure in Later Section
+
+[time]
+format = "[ ](bg:236)[$time]($style)"
+disabled = false
+style = "bold yellow bg:236"
+
+[sudo]
+format = "[$symbol]($style)"
+style = "red"
+symbol = ""
+disabled = true
+
+[character]
+format = "$symbol "
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❯](bold green)"
+
+
+
+###################################
+#  Containers and Version Control #
+###################################
+
+[singularity]
+
+[kubernetes]
+
+[vcsh]
+
+[git_branch]
+format = "[ ](dimmed bg:236)[ ](bg:236)[$symbol $branch ]($style)"
+style = "bold purple bg:236"
+symbol = ""	
+
+[git_commit]
+format = "[\\($hash$tag\\)]($style)[ ](bg:236)"
+style = "bold green bg:236"
+tag_symbol = " 🏷 "	
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\)[ ](bg:236)'
+style = "bold yellow bg:236"
+
+[git_metrics]
+format = '([+$added]($added_style) )([-$deleted]($deleted_style)[ ](bg:236))'
+added_style = "bold green bg:236"
+deleted_style = "bold red bg:236"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))[ ](bg:236)'	
+style = "bold red bg:236"
+
+[hg_branch]
+format = "[ ](dimmed bg:236)[$symbol$branch]($style)[ ](bg:236)"
+style = "bold purple bg:236"
+symbol = " "
+
+
+
+##################################
+#  Programming Language Modules  #
+##################################
+
+[package]
+format = "[ ](dimmed bg:236)[$symbol](bg:236)[$version]($style)"
+style = "bold 208 bg:236"
+symbol = " "
+
+[aws]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+format = "[ ](dimmed bg:236)[$symbol](bg:236)[($version )]($style)"
+style = "bold blue bg:236"
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+format = "[ ](dimmed bg:236)[$symbol](bg:236)[($version) ]($style)"
+style = "bold cyan bg:236"
+symbol = " "
+
+[java]
+format = "[ ](dimmed bg:236)[$symbol](bg:236)[(${version}) ]($style)"
+style = "dimmed red bg:236"
+symbol = " "
+
+[julia]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+format = "[ ](dimmed bg:236)[$symbol](bg:236)[($version )]($style)"
+style = "green bold bg:236"	
+symbol = " "
+
+[python]
+format = '[ ](dimmed bg:236)[$symbol](bg:236)[${pyenv_prefix}(${version})( \($virtualenv\))]($style)[ ](bg:236)'
+style = "yellow bold bg:236"
+symbol = " "    #  or 
+
+[rust]
+format = "[ ](dimmed bg:236)[$symbol ](bg:236)[$version]($style)[ ](bg:236)"
+style = "bold red bg:236"
+symbol = ""
+
+
+
+###########################
+#  OS and Process Status  #
+###########################
+
+[status]
+format = "[$symbol $status]($style)[  ](dimmed bg:236)"	
+style = "bold red bg:236"
+symbol = ""
+#success_symbol = ""
+disabled = false
+
+[cmd_duration]
+format = "[祥](bg:236)[$duration]($style)[  ](dimmed bg:236)"
+style = "bold yellow bg:236"
+show_milliseconds = true
+
+[jobs]
+format = "[$symbol$number]($style)[  ](dimmed bg:236)"
+symbol = "倫"
+style = "cyan bg:236"
+
+[memory_usage]
+format = "[$symbol ](bg:236)[${ram}( [易](bg:236)${swap})]($style)[  ](dimmed bg:236)"
+style = "202 bg:236"
+threshold = 80
+symbol = ""
+disabled = false
+
+[battery]
+format = "[$symbol$percentage]($style) "
+[[battery.display]]
+threshold = 20
+style = "bold red"
